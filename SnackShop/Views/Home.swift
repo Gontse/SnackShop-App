@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct Home: View {
+  
+  @State private var selectedCategory = ""
+  
   var body: some View {
     ScrollView {
-      
       VStack {
         //MARK: - Header
         HStack {
@@ -24,11 +26,47 @@ struct Home: View {
             .imageScale(.large)
             .padding()
             .frame(width: 70, height: 90)
-            .overlay(RoundedRectangle(cornerRadius: 50).stroke().opacity(0.4))
+            .overlay(RoundedRectangle(cornerRadius: 50)
+              .stroke().opacity(0.4))
         }
       }
-      .padding(40)
-      
+      .padding(30)
+      // MARK: - CategoryList
+      CategoryListView
+        .padding(.horizontal, 30)
+    }
+  }
+  
+  var CategoryListView: some View {
+    HStack {
+      ScrollView(.horizontal, showsIndicators: false) {
+        HStack{
+          ForEach(categoryList, id: \.id) { item in
+            Button {
+              selectedCategory = item.title
+            } label: {
+              HStack {
+                if item.title.capitalized != "All" {
+                  Image(item.icon)
+                    .foregroundColor(selectedCategory == item.title ? .white : .black)
+                }
+                Text(item.title)
+              }
+              .padding()
+              .background(selectedCategory == item.title ? .black : .gray.opacity(0.1))
+              .foregroundColor(selectedCategory == item.title ? .white : .black)
+              .clipShape(Capsule())
+            }
+          }
+        }
+      }
     }
   }
 }
+
+#Preview {
+    Home()
+}
+
+
+
