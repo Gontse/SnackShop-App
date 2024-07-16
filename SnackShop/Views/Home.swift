@@ -33,7 +33,30 @@ struct Home: View {
       .padding(30)
       // MARK: - CategoryList
       CategoryListView
-        .padding(.horizontal, 30)
+      
+     // MARK: - Collection View
+      HStack {
+        Text("Choco **Collections**")
+          .font(.system(size: 24))
+        
+        Spacer()
+        
+        Image(systemName: "arrow.right")
+          .imageScale(.large)
+      }
+      .padding(.horizontal, 30)
+      .padding(.vertical, 15)
+      
+      // MARK: - Product List
+      
+      ScrollView(.horizontal, showsIndicators: false) {
+        HStack {
+          ForEach(productList, id: \.id) { product in
+            ProductCard(product: product)
+          }
+        }
+      }
+      
     }
   }
   
@@ -68,5 +91,27 @@ struct Home: View {
     Home()
 }
 
-
-
+struct ProductCard: View {
+  
+  var product: Product
+  
+  var body: some View {
+    ZStack {
+      VStack(alignment: .leading) {
+        Text("\(product.name)")
+          .font(.system(size: 30, weight: .semibold))
+        
+        Text(product.category.rawValue)
+          .font(.callout)
+          .padding()
+          .background(.white.opacity(0.5))
+          .clipShape(Capsule())
+      }
+    }
+    .padding()
+    .frame(width: 336, height: 422)
+    .background(product.color.opacity(0.2))
+    .clipShape(.rect(cornerRadius: 57))
+    .padding(.leading, 20)
+  }
+}
