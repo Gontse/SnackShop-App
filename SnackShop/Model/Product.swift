@@ -22,10 +22,11 @@ struct Product: Identifiable {
 }
 
 var productList = [
-  Product(name: "Good Source", category: .choco, image: "", color: .pink, price: 10.00),
-  Product(name: "Unreal Muffins", category: .choco, image: "", color: .blue, price: 10.00),
-  Product(name: "TwisterChips", category: .chips, image: "", color: .yellow, price: 10.00),
-  Product(name: "Regular Nature", category: .chips, image: "", color: .green, price: 10.00),
-  Product(name: "Deep River", category: .chips, image: "", color: .orange, price: 10.00),
+  Product(name: "BBQ Chips", category: .choco, image: "BBQChips", color: .brown, price: 10.00),
+  Product(name: "Choc Chips Cookies", category: .choco, image: "ChocChipCookies", color: .purple, price: 10.00),
+  Product(name: "Prawn Cocktail Chips", category: .chips, image: "PrawnCocktailChips", color: .pink, price: 10.00),
+  Product(name: "Salt & Vinegar Fries", category: .chips, image: "SaltVinegarFries", color: .blue, price: 10.00),
+  Product(name: "Straw Berry Strings", category: .chips, image: "StrawberryStrings", color: .orange, price: 10.00),
+  Product(name: "PoppodCorn", category: .chips, image: "SourCreamChivesPoppedCorn", color: .green, price: 10.00)
 ]
 
