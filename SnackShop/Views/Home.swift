@@ -50,6 +50,8 @@ struct Home: View {
               .imageScale(.large)
               .bold()
           }
+          .foregroundColor(.black)
+          
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 15)
