@@ -12,50 +12,55 @@ struct Home: View {
   @State private var selectedCategory = ""
   
   var body: some View {
-    ScrollView {
-      VStack {
+    NavigationView {
+      ScrollView {
+        VStack {
+          
+          //MARK: - Header
+          HStack {
+            Text("Order From The Best Of **Snacks**")
+              .font(.system(size: 36))
+              .padding(.trailing)
+            
+            Spacer()
+            
+            Image(systemName: "line.3.horizontal")
+              .imageScale(.large)
+              .padding()
+              .frame(width: 70, height: 90)
+              .overlay(RoundedRectangle(cornerRadius: 50)
+                .stroke().opacity(0.4))
+          }
+        }
+        .padding(30)
         
-        //MARK: - Header
+        // MARK: - CategoryList
+        CategoryListView
+        
+        // MARK: - Collection View
         HStack {
-          Text("Order From The Best Of **Snacks**")
-            .font(.system(size: 36))
-            .padding(.trailing)
+          Text("Choco **Collections**")
+            .font(.system(size: 24))
           
           Spacer()
-          
-          Image(systemName: "line.3.horizontal")
-            .imageScale(.large)
-            .padding()
-            .frame(width: 70, height: 90)
-            .overlay(RoundedRectangle(cornerRadius: 50)
-              .stroke().opacity(0.4))
+          NavigationLink {
+            CollectionView()
+          } label: {
+            Image(systemName: "arrow.right")
+              .imageScale(.large)
+              .bold()
+          }
         }
-      }
-      .padding(30)
-      
-      // MARK: - CategoryList
-      CategoryListView
-      
-     // MARK: - Collection View
-      HStack {
-        Text("Choco **Collections**")
-          .font(.system(size: 24))
+        .padding(.horizontal, 30)
+        .padding(.vertical, 15)
         
-        Spacer()
+        // MARK: - Product List
         
-        Image(systemName: "arrow.right")
-          .imageScale(.large)
-          .bold()
-      }
-      .padding(.horizontal, 30)
-      .padding(.vertical, 15)
-      
-      // MARK: - Product List
-      
-      ScrollView(.horizontal, showsIndicators: false) {
-        HStack {
-          ForEach(productList, id: \.id) { product in
-            ProductCard(product: product)
+        ScrollView(.horizontal, showsIndicators: false) {
+          HStack {
+            ForEach(productList, id: \.id) { product in
+              ProductCard(product: product)
+            }
           }
         }
       }
