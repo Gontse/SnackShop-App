@@ -27,6 +27,6 @@ var productList = [
   Product(name: "Prawn Cocktail Chips", category: .chips, image: "PrawnCocktailChips", color: .pink, price: 10.00),
   Product(name: "Salt & Vinegar Fries", category: .chips, image: "SaltVinegarFries", color: .blue, price: 10.00),
   Product(name: "Straw Berry Strings", category: .chips, image: "StrawberryStrings", color: .orange, price: 10.00),
-  Product(name: "PoppodCorn", category: .chips, image: "SourCreamChivesPoppedCorn", color: .green, price: 10.00)
+  Product(name: "Poppod Corn", category: .chips, image: "SourCreamChivesPoppedCorn", color: .green, price: 10.00)
 ]
 

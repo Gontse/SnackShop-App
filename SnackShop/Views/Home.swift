@@ -14,6 +14,7 @@ struct Home: View {
   var body: some View {
     ScrollView {
       VStack {
+        
         //MARK: - Header
         HStack {
           Text("Order From The Best Of **Snacks**")
@@ -31,6 +32,7 @@ struct Home: View {
         }
       }
       .padding(30)
+      
       // MARK: - CategoryList
       CategoryListView
       
@@ -43,6 +45,7 @@ struct Home: View {
         
         Image(systemName: "arrow.right")
           .imageScale(.large)
+          .bold()
       }
       .padding(.horizontal, 30)
       .padding(.vertical, 15)
@@ -56,7 +59,6 @@ struct Home: View {
           }
         }
       }
-      
     }
   }
   
@@ -98,49 +100,70 @@ struct ProductCard: View {
   var body: some View {
     ZStack {
       Image(product.image)
-      VStack(alignment: .leading) {
-        Text("\(product.name)")
-          .font(.system(size: 30, weight: .semibold))
-          .frame(width: 140)
-        
-        Text(product.category.rawValue)
-          .font(.callout)
-          .padding()
-          .background(.white.opacity(0.5))
-          .clipShape(Capsule())
-        
-        Spacer()
-        
-        HStack {
-          Text("R\(product.price)")
-            .font(.system(size: 25, weight: .semibold))
-    
+        .resizable()
+        .scaledToFit()
+        .padding(.trailing, -200)
+        .rotationEffect(Angle(degrees: 30))
+      
+      ZStack {
+        VStack(alignment: .leading) {
+          Text("\(product.name)")
+            .font(.system(size: 30, weight: .semibold))
+            .frame(width: 140)
+          
+          Text(product.category.rawValue)
+            .font(.callout)
+            .padding()
+            .background(.white.opacity(0.8))
+            .clipShape(Capsule())
+          
           Spacer()
           
-          Button {
+          HStack {
+            Text(String(format: "R %.2g", product.price))
+              .font(.system(size: 25, weight: .semibold))
             
-          } label: {
-            Image(systemName: "basket")
-              .foregroundColor(.white)
-              .imageScale(.large)
-              .padding()
-              .frame(width: 90, height: 60)
-              .background(.black)
-              .clipShape(Capsule())
+            Spacer()
+            
+            Button {
+              
+            } label: {
+              Image(systemName: "basket")
+                .foregroundColor(.white)
+                .imageScale(.large)
+                .padding()
+                .frame(width: 90, height: 60)
+                .background(.black)
+                .clipShape(Capsule())
+            }
           }
+          .padding(.leading)
+          .padding()
+          .frame(maxWidth: .infinity)
+          .frame(height: 80)
+          .background(.white.opacity(0.9))
+          .clipShape(Capsule())
         }
-        .padding(.leading)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .frame(height: 80)
-        .background(.white.opacity(0.5))
-        .clipShape(Capsule())
       }
+      .padding(30)
+      .frame(width: 336, height: 432)
     }
-    .padding(30)
     .frame(width: 336, height: 422)
-    .background(product.color.opacity(0.15))
+    .background(product.color.opacity(0.1))
     .clipShape(.rect(cornerRadius: 57))
     .padding(.leading, 20)
   }
+  
+  private func convertNumberToCurrently(_ number: Double) {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.maximumSignificantDigits = 2
+    formatter.locale = Locale(identifier: "en_US")
+    
+   let formattedNumber = formatter.string(from: NSNumber(value: number))
+    print(formattedNumber)
+  }
+  
+ 
+  
 }
